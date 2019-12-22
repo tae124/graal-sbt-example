@@ -5,5 +5,11 @@ import org.graalvm.polyglot.proxy._
 object Hello extends App {
   println("Hello World!")
   val context = Context.create()
-  context.eval("python", "print('Hello GraalPython from Polyglot')")
+  val pythonMsg = "Hello python"
+  val pythonCode = s"""
+for num in range(5, 10):
+  print("${pythonMsg} - %d" % num)
+"""
+  println(pythonCode)
+  context.eval("python", pythonCode)
 }
